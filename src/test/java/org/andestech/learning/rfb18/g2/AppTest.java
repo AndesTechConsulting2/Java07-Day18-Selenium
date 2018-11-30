@@ -164,6 +164,16 @@ public class AppTest
         savePicture();
     }
 
+    @Test
+    public void loginPageTest()
+    {
+
+        Login login = new Login("ppetrov", "Ppetrov22");
+        LoginPage loginpage = new LoginPage(login,wd);
+
+        Assert.assertTrue(loginpage.testLogin());
+    }
+
 
     @AfterClass
     public void tearDown()

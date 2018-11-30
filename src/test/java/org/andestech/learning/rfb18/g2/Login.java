@@ -7,6 +7,7 @@ public class Login {
     }
 
     private String login;
+    // id, группа (роль), права, ....
 
     public Login(String login, String password) {
         this.login = login;
@@ -14,6 +15,8 @@ public class Login {
     }
 
     private String password;
+
+    public String getPassword(){return password;}
 
 
 }
