@@ -71,7 +71,8 @@ public class LoginPage {
 
     wd.switchTo().alert().accept();
 
-    if(!isUserLoggedIn()) return true;
+    if(!isUserLoggedIn())
+      return true;
 
     return false;
   }

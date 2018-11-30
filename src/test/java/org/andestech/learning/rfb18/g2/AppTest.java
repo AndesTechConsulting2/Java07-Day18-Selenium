@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -164,7 +165,7 @@ public class AppTest
         savePicture();
     }
 
-    @Test
+    @Test(groups = "positive")
     public void loginLogoutPageTest()
     {
 
@@ -175,6 +176,32 @@ public class AppTest
         //.. действия авторизованого пользователя на странице\\
 
         Assert.assertTrue(loginpage.testLogout(),"Logout failed!..." + login);
+
+    }
+
+
+    @Test(groups = "positive")
+    public void registrationTest(){
+
+
+    }
+
+
+    @Test
+    public void selectorTest() throws InterruptedException
+    {
+        wd.get("http://andestech.org/learning/rfb18/newcustomer.html");
+
+        WebElement webElement =
+                wd.findElement(By.id("group_selector"));
+
+        Select select = new Select(webElement);
+
+       // select.selectByValue("free");
+        select.selectByVisibleText("безработный");
+        Thread.sleep(2000);
+        select.selectByVisibleText("студент");
+        Thread.sleep(2000);
 
     }
 
