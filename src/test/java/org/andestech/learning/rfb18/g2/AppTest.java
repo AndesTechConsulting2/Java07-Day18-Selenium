@@ -165,7 +165,7 @@ public class AppTest
     }
 
     @Test
-    public void loginPageTest()
+    public void loginLogoutPageTest()
     {
 
         Login login = new Login("ppetrov", "Ppetrov22");

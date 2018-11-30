@@ -1,5 +1,6 @@
 package org.andestech.learning.rfb18.g2;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,11 +43,15 @@ public class LoginPage {
 
   private boolean isUserLoggedIn()
   {
-    return wd.manage().getCookieNamed("loginOk").getValue().equals(login.getLogin());
+    Cookie cookie= wd.manage().getCookieNamed("loginOk");
+    if(cookie != null && cookie.getValue().equals(login.getLogin())) return true;
+    return false;
+
   }
 
   public boolean testLogin()
   {
+    if(isUserLoggedIn()) return true;
     if(!wd.getCurrentUrl().equals(loginURL)) wd.get(loginURL);
     resetBtn.click();
     loginText.sendKeys(login.getLogin());
@@ -65,6 +70,7 @@ public class LoginPage {
     logoutLink.click();
 
     wd.switchTo().alert().accept();
+
     if(!isUserLoggedIn()) return true;
 
     return false;
