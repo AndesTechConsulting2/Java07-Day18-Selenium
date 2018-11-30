@@ -40,6 +40,11 @@ public class LoginPage {
   private WebElement resetBtn;
 
 
+  private boolean isUserLoggedIn()
+  {
+    return wd.manage().getCookieNamed("loginOk").getValue().equals(login.getLogin());
+  }
+
   public boolean testLogin()
   {
     if(!wd.getCurrentUrl().equals(loginURL)) wd.get(loginURL);
@@ -48,10 +53,22 @@ public class LoginPage {
     passText.sendKeys(login.getPassword());
     loginSubmitBtn.click();
     /// проверка что логин успешен
+    if(isUserLoggedIn())
+    {return true;}
 
-    return true;
+    return false;
   }
 
+  public boolean testLogout()
+  {
+    if(!isUserLoggedIn()) testLogin();
+    logoutLink.click();
+
+    wd.switchTo().alert().accept();
+    if(!isUserLoggedIn()) return true;
+
+    return false;
+  }
 
 
 }

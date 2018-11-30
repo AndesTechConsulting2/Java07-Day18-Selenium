@@ -171,7 +171,11 @@ public class AppTest
         Login login = new Login("ppetrov", "Ppetrov22");
         LoginPage loginpage = new LoginPage(login,wd);
 
-        Assert.assertTrue(loginpage.testLogin());
+        Assert.assertTrue(loginpage.testLogin(), "Login failed!..." + login);
+        //.. действия авторизованого пользователя на странице\\
+
+        Assert.assertTrue(loginpage.testLogout(),"Logout failed!..." + login);
+
     }
 
 
